@@ -171,10 +171,10 @@ $$R^2 = \frac{SSE}{SST} = 1 - \frac{SSR}{SST}$$
 
 <br>
 
-- `총제곱합 SST` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$SST = \sum_{i=1}^n (y_i - \bar y)²$
+- `총제곱합 SST` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $SST = \sum_{i=1}^n (y_i - \bar y)²$
 - `설명된 제곱합 SSE` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $SSE = \sum_{i=1}^n (\hat y_i - \bar y)²$ 
-- `잔차 제곱합 SSR` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$SSR = \sum_{i=1}^n (\hat u_i)^2$              
-  -  $\hat u_i$ 잔차 = 표본집단 회귀식에서 예측된 값 - 실제 관측값
+- `잔차 제곱합 SSR` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $SSR = \sum_{i=1}^n (\hat u_i)^2$              
+  -  `$\hat u_i$ 잔차` = 표본집단 회귀식에서 예측된 값 - 실제 관측값
 
 <br>
 
@@ -341,6 +341,7 @@ for n in [1, 5, 10]:
   - 모델이 훈련 세트에 집착하지 않도록 가중치 제한하기 (모델의 복잡도 낮춤)
   - 훈련 데이터의 잡음 줄이기 (outlier, error 제거)   
 <br>
+
 #### 2) 과소 적합 underfitting
 - 훈련 세트와 테스트 세트의 성능에는 차이가 크지 않지만 모두 낮은 성능을 내는 경우
 - 훈련 세트와 테스트 세트의 성능이 서로 가까워지면 성능 자체가 낮음
