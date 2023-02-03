@@ -113,7 +113,10 @@ plt.show()
 
 #### 1) 유클리드 거리(Euclidean Dstance) = L2 Distance
 - 연속 변수에서 __가장 일반적으로 사용__ 하는 거리 척도
-- 관측치 사이의 최단거리
+- 관측치 사이의 최단거리   
+
+<br>
+
 ![L2 Distance](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbvLiuP%2FbtrWSv4hjpB%2FpPoDFeeV4orkcKoycBFYS1%2Fimg.png)   
 
 <br>
@@ -130,7 +133,10 @@ $d = \sqrt{(a_1 - b_1)^2 + (a_2 - b_2)^2 + ... + (a_n - b_n)^2}$   <br>
 <br>
 
 #### 2) 맨해튼 거리(Manhattan Distance) = L1 Distance
-- 각 좌표축 방향으로만 이동할 경우에 계산되는 거리
+- 각 좌표축 방향으로만 이동할 경우에 계산되는 거리   
+
+<br>
+
 ![L1 Distance](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdbXGfS%2FbtrWUHiNbPC%2FQi9hxmi0spdUeVk0RE4oI0%2Fimg.png)   
 
 <br>
@@ -174,7 +180,7 @@ $$R^2 = \frac{SSE}{SST} = 1 - \frac{SSR}{SST}$$
 - `총제곱합 SST` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $SST = \sum_{i=1}^n (y_i - \bar y)²$
 - `설명된 제곱합 SSE` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $SSE = \sum_{i=1}^n (\hat y_i - \bar y)²$ 
 - `잔차 제곱합 SSR` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $SSR = \sum_{i=1}^n (\hat u_i)^2$              
-  -  `$\hat u_i$ 잔차` = 표본집단 회귀식에서 예측된 값 - 실제 관측값
+  -  $\hat u_i$ 잔차 = 표본집단 회귀식에서 예측된 값 - 실제 관측값
 
 <br>
 
@@ -207,6 +213,10 @@ r2_score(y_true, y_pred, sample_weight = None, multioutput = 'uniform_average')
 
 <br>
 
+$$MSE = \frac{1}{N} \sum_{i=1}^n (y_i - \hat y_i)^2$$
+
+<br>
+
 ```python
 from sklearn.metrics import mean_squared_error
 
@@ -225,6 +235,13 @@ print("mse = {:.3f}".format(mse_))
 - 오류 지표를 루트를 통해 실제값과 유사한 단위로 변환하기 때문에 해석이 쉬움
 - 실생활에서 쓰는 계산법을 벗어났기 때문에 'RMSE로 구한 에러값만큼 모델이 틀리다'고 말할 수는 없음
 - 그럼에도 큰 오류값 차이에 대해 큰 패널티를 주는 이점
+
+<br>
+
+$$RMSE = \sqrt{\sum_{i=1}^n \frac{(\hat y_i - y_i)^2}{n}}$$
+
+<br>
+
 ```python
 rmse = np.sqrt(mse)
 ```
@@ -235,6 +252,13 @@ rmse = np.sqrt(mse)
 - 절대값을 취하기 때문에 가장 직관적으로 알 수 있는 지표
 - MSE보다 특이치에 robust (제곱하지 않아 이상치에 덜 민감)
 - 절대값을 취하기 때문에 모델이 underperformance인지 overperformance인지 알 수 없음
+
+<br>
+
+$$MAE = \frac{1}{n} \sum_{j=1}^n |y_j - \hat y_j|$$
+
+<br>
+
 ```python
 from sklearn.metrics import mean_absolute_error
 
@@ -243,12 +267,19 @@ mean_absolute_error(y_true, y_pred)
 
 <br>
 
-#### 5) 평균 절대비 오차 MSPE (Mean Absolute Percentage Error)
+#### 5) 평균 절대비 오차 MAPE (Mean Absolute Percentage Error)
 - MAE와 마찬가지로 MSE보다 이상치에 robust
 - MAPE는 퍼센트값을 가지며 0에 가까울수록 회귀 모형의 성능이 좋다고 볼 수 있음
 - 0~100% 의 값을 가지므로 성능 비교 해석 가능
 - 추가적으로 모델에 대한 편향 존재    
   → MPE를 통해 대응 & 0 근처의 값에 대해서는 사용하기 어려움
+
+<br>
+
+$$MAPE = \frac{\sum | \frac{y - \hat y}{y} |}{n} * 100\%$$
+
+<br>
+
 ```python
 mean_absolute_percentage_error(y_true, y_pred)
 ```
@@ -260,6 +291,13 @@ mean_absolute_percentage_error(y_true, y_pred)
 - 과대평가인지 과소평가인지 알 수 있어 유용함
 - MAE, MSE는 절대 오차 측정 / MAPE, MPE는 상대 오차 측정
 - sklearn에서 구현된 것이 보이지 않음
+
+<br>
+
+$$MPE = \frac{\sum (y - \hat y)}{n} * 100\%$$
+
+<br>
+
 ```python
 def MPE(y_true, y_pred):
     return np.mean((y_true - y_pred) / y_true) * 100
@@ -269,7 +307,9 @@ MPE(y_true, y_pred)
 
 <br>
 
-### 6. KNN 회귀 구현
+### 6. KNN 회귀 구현    
+<br>
+
 ```python
 class sklearn.neighbors.KNeighborsRegressor(n_neighbhors=5, *, weights='uniform', algorithm='auto', 
                                             leaf_size=30, p=2, metric='minkowski', metric_params=None, n_jobs=None):
