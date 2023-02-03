@@ -21,18 +21,26 @@
 - 매우 작은 K는 overfitting 초래: 데이터의 지역적 특성을 지나치게 반영함
 - 매우 큰 K는 underfitting 초래: 모델이 과하게 정규화됨
 
+<br>
+
 #### 1) 방법
 - K 후보군 결정 : 1부터 학습데이터 개수 -1까지, 데이터 개수가 많다면 1부터 √n까지
 - Train & Test 도는 Validation 데이터에 대해 knn 에러율 구함
 - 에러율이 가장 낮은 K 선택
 
+<br>
+
 #### 2) 종속변수가 범주형일 경우
 - Tie 문제를 막기 위해 K는 홀수 권장
 - 짝수일 경우 2:2, 3:3 등으로 동일하게 나뉠 수 있기 때문 
 
+<br>
+
 #### 3) 종속변수가 연속형일 경우
 - Inverse distance weighted average 고려 가능
 - 거리가 가까운 관측치들에게 가중치를 부과해 가중평균으로 구하는 것   
+
+<br>
 
 #### 4) train & test 반복문으로 최적의 k값 구하기
 ```python
@@ -73,16 +81,22 @@ plt.show()
   - 결정계수(R²), MSE, RMSE, MAE, MAPE, MPE
 - 훈련 세트, 테스트 세트에 대한 평가 점수를 통해 과대 적합 / 과소 적합 / 적정 판단
 
+<br>
+
 #### 1) 장점
 - 학습 데이터의 노이즈에 크게 영향 받지 않음
 - 학습 데이터의 수가 충분하다면 상당히 좋은 성능을 보임
 - 훈련 단계가 빠름
 - 데이터의 분산까지 고려하면 상당히 robust 해짐
 
+<br>
+
 #### 2) 단점
 - 모델을 따로 생성하지 않아 특징과 클래스 간의 관계를 이해하는 부분에 제약이 있음
 - 최적 이웃 수와 사용할 거리 척도를 데이터 각각의 특성에 맞게 연구자가 임의로 설정해야 함
 - 새 관측치와 각 학습 데이터 간의 거리를 전부 측정해야하므로 '분류, 예측' 단계가 느림
+
+<br>
 
 #### 3) 사용시 유의점
 - `combining rule` KNN은 주변 이웃의 분포에 따라 예측 결과가 달라짐
@@ -93,17 +107,23 @@ plt.show()
   - 데이터 간 분포가 크게 다를 경우 각 변수의 차이를 해석하기 어려움
   - 알고리즘의 적절한 적용을 위해 정규화 과정 필요
 
+<br>
+
 ### 4. 거리 함수
 
 #### 1) 유클리드 거리(Euclidean Dstance) = L2 Distance
 - 연속 변수에서 __가장 일반적으로 사용__ 하는 거리 척도
 - 관측치 사이의 최단거리
-![L2 Distance](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbvLiuP%2FbtrWSv4hjpB%2FpPoDFeeV4orkcKoycBFYS1%2Fimg.png)
-   
+![L2 Distance](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbvLiuP%2FbtrWSv4hjpB%2FpPoDFeeV4orkcKoycBFYS1%2Fimg.png)   
+
+<br>
+ 
 `2차원`
 $d = \sqrt{(a_1 - b_1)^2 + (a_2 - b_2)^2}$    
 `n차원`
 $d = \sqrt{(a_1 - b_1)^2 + (a_2 - b_2)^2 + ... + (a_n - b_n)^2}$   <br>
+
+<br>
 
 - 유클리드 함수를 채택할 경우 K를 정하기 위해 반드시 `정규화`가 선행되어야 함
 
@@ -112,6 +132,8 @@ $d = \sqrt{(a_1 - b_1)^2 + (a_2 - b_2)^2 + ... + (a_n - b_n)^2}$   <br>
 #### 2) 맨해튼 거리(Manhattan Distance) = L1 Distance
 - 각 좌표축 방향으로만 이동할 경우에 계산되는 거리
 ![L1 Distance](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdbXGfS%2FbtrWUHiNbPC%2FQi9hxmi0spdUeVk0RE4oI0%2Fimg.png)   
+
+<br>
 
 `2차원`   
 $d = |a_1 - b_1| + |a_2 - b_2|$   
@@ -159,6 +181,9 @@ $$R^2 = \frac{SSE}{SST} = 1 - \frac{SSR}{SST}$$
 - `R² = 0` x, y는 선형 관계 없음
 - `R² = 1` x, y는 완벽한 선형 관계
 - R²가 1에 가까울수록 회귀 모형이 적합함
+
+<br>
+
 ```python
 # sklearn
 r2_score(y_true, y_pred, sample_weight = None, multioutput = 'uniform_average')
@@ -179,6 +204,9 @@ r2_score(y_true, y_pred, sample_weight = None, multioutput = 'uniform_average')
 - MSE의 범위는 0~무한대
 - MSE가 100일 때 이 모형이 좋은지 기준이 없어 판단이 어려움    
   → MAPE의 퍼센트 값을 이용해 성능 평가하기도 함
+
+<br>
+
 ```python
 from sklearn.metrics import mean_squared_error
 
@@ -300,6 +328,8 @@ for n in [1, 5, 10]:
 
 <br>
 
+![KNN](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBmxPu%2FbtrWR7biC9n%2Fk4gh4xTfDq5JbFokgkp9d1%2Fimg.png)   
+<br>
 ### 7. 과대 적합 / 과소 적합
 
 #### 1) 과대 적합 overfitting
@@ -309,8 +339,8 @@ for n in [1, 5, 10]:
 - `해결 방법`
   - 훈련 세트에 충분히 다양한 샘플 포함시키기
   - 모델이 훈련 세트에 집착하지 않도록 가중치 제한하기 (모델의 복잡도 낮춤)
-  - 훈련 데이터의 잡음 줄이기 (outlier, error 제거)
-
+  - 훈련 데이터의 잡음 줄이기 (outlier, error 제거)   
+<br>
 #### 2) 과소 적합 underfitting
 - 훈련 세트와 테스트 세트의 성능에는 차이가 크지 않지만 모두 낮은 성능을 내는 경우
 - 훈련 세트와 테스트 세트의 성능이 서로 가까워지면 성능 자체가 낮음
