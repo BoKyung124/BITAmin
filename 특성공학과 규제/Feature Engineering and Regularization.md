@@ -36,14 +36,18 @@ print(lr.score(test_poly, test_target))
 # -144.4057...
 ```    
 - 다중회귀모델의 훈련은 선형회귀모델 훈련 방식과 동일    
-- 단, 여러 개의 특성을 사용하여 회귀를 수행한다는 차이가 있음       
+- 단, 여러 개의 특성을 사용하여 회귀를 수행한다는 차이가 있음   
+    
 <br>    
-- `PolynomialFeatures()`       
-    - 특성의 개수를 늘리면 강력한 선형 모델이 됨       
+
+- `PolynomialFeatures()`           
+    - 특성의 개수를 늘리면 강력한 선형 모델이 됨     
+   
 <br>   
-- 다중 회귀 모델을 훈련시킨 test set에 대한 score     
-    - test set에 대한 score가 큰 음수     
-    - train set에 과대적합되어 test 예측 성능이 떨어지는 현상       
+
+- 다중 회귀 모델을 훈련시킨 test set에 대한 score<br>      
+    - test set에 대한 score가 큰 음수<br>
+    - train set에 과대적합되어 test 예측 성능이 떨어지는 현상<br>        
     <img width="311" alt="스크린샷 2023-04-01 오후 11 09 48" src="https://user-images.githubusercontent.com/53086873/229294197-d19c4dc5-dcc4-4739-8fd1-9dee9e22dcd5.png">    
 
 <br>
@@ -93,8 +97,10 @@ print(lr.score(test_poly, test_target))
 <br>
 
 ### 2. L2 Regularization
-- 제약조건: 가중치들의 제곱합을 최소화하는 것    
-<img width="256" alt="스크린샷 2023-04-01 오후 11 35 54" src="https://user-images.githubusercontent.com/53086873/229295617-cf569ea4-48af-41ab-973b-1fa24125775f.png">       
+- 제약조건: 가중치들의 제곱합을 최소화하는 것   
+ 
+<img width="256" alt="스크린샷 2023-04-01 오후 11 35 54" src="https://user-images.githubusercontent.com/53086873/229295617-cf569ea4-48af-41ab-973b-1fa24125775f.png">    
+
 - hyper parameters $\gamma, \alpha$      
     - lambda, alpha, regularization parameter, penality term     
 
@@ -330,7 +336,8 @@ for alpha in alpha_list:
 
 <br>
 
-$\sum_{i=0}^{n}(y_i - \sum_{j} x_{ij}{\beta}_j)^2 + \lambda \sum_{j=1}^{p} |{\beta}_j|$    
+
+$$\sum_{i=0}^{n}(y_i - \sum_{j} x_{ij}{\beta}_j)^2 + \lambda \sum_{j=1}^{p} |\beta_j|$$   
 
 - ${\lambda}$ -> ${\alpha}$    
 - ${\alpha}$ 는 규제의 강도를 나타내고, 사람이 직접 지정하는 hyper parameter    
@@ -419,8 +426,9 @@ print(lasso.score(test_scaled, test_target))
 
 <br>
 
-### 3. Regularization
-$\underset{{\beta}_j}{\operatorname{\argmin}} (\sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}x_{ij}\beta_j)^2 + \lambda \sum_{j=1}^{n} (\alpha |\beta_j| + (1 - \alpha)\beta_j^2))$ &nbsp;&nbsp; $(0 \le \alpha \le 1)$       
+### 3. Regularization   
+
+$$\arg \min_{\beta_j} (\sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}x_{ij}\beta_j)^2 + \lambda \sum_{j=1}^{n} (\alpha |\beta_j| + (1 - \alpha)\beta_j^2))$$
 
 - n: 데이터 수    
 - i: 데이터 인덱스    
