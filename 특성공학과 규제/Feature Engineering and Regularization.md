@@ -38,31 +38,31 @@ print(lr.score(test_poly, test_target))
 - 다중회귀모델의 훈련은 선형회귀모델 훈련 방식과 동일
 - 단, 여러 개의 특성을 사용하여 회귀를 수행한다는 차이가 있음   
 <br>    
-- `PolynomialFeatures()`
+- `PolynomialFeatures()`    
     - 특성의 개수를 늘리면 강력한 선형 모델이 됨   
 <br>   
-- 다중 회귀 모델을 훈련시킨 test set에 대한 score
-    - test set에 대한 score가 큰 음수
-    - train set에 과대적합되어 test 예측 성능이 떨어지는 현상    
+- 다중 회귀 모델을 훈련시킨 test set에 대한 score   
+    - test set에 대한 score가 큰 음수   
+    - train set에 과대적합되어 test 예측 성능이 떨어지는 현상     
     <img width="311" alt="스크린샷 2023-04-01 오후 11 09 48" src="https://user-images.githubusercontent.com/53086873/229294197-d19c4dc5-dcc4-4739-8fd1-9dee9e22dcd5.png">   
 
 <br>
 
 # 규제
 ### 1. 개념
-- 사용하는 이유
+- 사용하는 이유   
     - 모델이 지나치게 복잡하여 주어진 데이터가 아닌 새로운 데이터에 대해 정확한 예측을 하지 못하는 과적합(overfitting) 현상 해결
-- 적용 방법
+- 적용 방법   
     - 모델의 각 변수의 weight(가중치, 회귀계수)의 크기가 작게끔 모델을 설계하여 모델의 복잡도를 줄이는 방식
     -> 가중치에 대한 제약조건(penalty) 추가   
     &nbsp;&nbsp;&nbsp;&nbsp;= 계수의 크기 제한   
-- main concept
+- main concept   
     - perfect fit을 포기함으로써(training accuracy를 낮춤으로써)   
     - potential fit을 증가시키고자(testing accuracy를 높이고자) 하는 것
 
 <br>
 
-- Regularized Linear Regression Method(정규화 선형회귀)
+- Regularized Linear Regression Method(정규화 선형회귀)   
     - 종류에 따라 가중치에 제약을 거는 방법이 다름
 `Ridge Regression` L2 Regularization penalizes (weight)²   
 `Lasso Regression` L1 Regularization penalizes |weight|   
@@ -85,7 +85,7 @@ print(lr.score(test_poly, test_target))
 
 # Rigde Regression 릿지 회귀
 ### 1. 정의
-- **독립 변수의 상관 관계가 높은 경우에 다중 회귀 모델의 계수를 추정하는 방법**
+- **독립 변수의 상관 관계가 높은 경우에 다중 회귀 모델의 계수를 추정하는 방법** 
 - 다중선형회귀모델은 특성이 많아질수록 훈련 데이터에 과적합되기 쉬움
 - 이때 회귀선의 기울기는 단 하나의 특이값에도 크게 변할 수 있음
 - `L2 Regularizaton` L2 Norm에 기반해서 회귀계수의 크기에 패널티를 부여하는 회귀
@@ -94,8 +94,8 @@ print(lr.score(test_poly, test_target))
 
 ### 2. L2 Regularization
 - 제약조건: 가중치들의 제곱합을 최소화하는 것
-<img width="256" alt="스크린샷 2023-04-01 오후 11 35 54" src="https://user-images.githubusercontent.com/53086873/229295617-cf569ea4-48af-41ab-973b-1fa24125775f.png">   
-- Hyperparameter ${\gamma}, {\alpha}$
+<img width="256" alt="스크린샷 2023-04-01 오후 11 35 54" src="https://user-images.githubusercontent.com/53086873/229295617-cf569ea4-48af-41ab-973b-1fa24125775f.png">    
+- $\gamma, \alpha$     
     - lambda, alpha, regularization parameter, penality term 
 
 <br>
